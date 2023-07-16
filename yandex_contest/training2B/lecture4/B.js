@@ -32,7 +32,6 @@
 // Obama 8
 // McCain 1
 
-
 // Пример 2
 // Ввод	          Вывод
 // ivanov 100     ivanov 900
