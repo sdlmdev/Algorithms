@@ -27,8 +27,7 @@
 
 // Пример 3
 // Ввод	      Вывод
-// (
-// no
+// (          no
 
 const readline = require('readline').createInterface({
   input: process.stdin,
