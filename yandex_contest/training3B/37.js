@@ -1,4 +1,4 @@
-// 36. Длина кратчайшего пути
+// 37. Путь в графе
 
 //                      Все языки	    Python 3.6
 // Ограничение времени	1 секунда	    5 секунд
@@ -6,7 +6,7 @@
 // Ввод	стандартный ввод или input.txt
 // Вывод стандартный вывод или output.txt
 
-// В неориентированном графе требуется найти длину минимального пути между двумя вершинами.
+// В неориентированном графе требуется найти минимальный путь между двумя вершинами.
 
 // Формат ввода
 // Первым на вход поступает число N – количество вершин в графе (1 ≤ N ≤ 100).
@@ -14,14 +14,15 @@
 // Далее задаются номера двух вершин – начальной и конечной.
 
 // Формат вывода
-// Выведите L – длину кратчайшего пути (количество ребер, которые нужно пройти).
+// Выведите сначала L – длину кратчайшего пути (количество ребер, которые нужно пройти),
+// а потом сам путь. Если путь имеет длину 0, то его выводить не нужно, достаточно вывести длину.
 
-// Если пути нет, нужно вывести -1.
+// Необходимо вывести путь (номера всех вершин в правильном порядке). Если пути нет, нужно вывести -1.
 
-// Пример 1
-// Ввод	                         Вывод
-// 10                            2     
-// 0 1 0 0 0 0 0 0 0 0
+// Пример
+// Ввод	                        Вывод
+// 10                           2
+// 0 1 0 0 0 0 0 0 0 0          5 2 4
 // 1 0 0 1 1 0 1 0 0 0
 // 0 0 0 0 1 0 0 0 1 0
 // 0 1 0 0 0 0 1 0 0 0
@@ -32,16 +33,6 @@
 // 0 0 1 0 0 0 0 1 0 0
 // 0 0 0 0 1 1 0 0 0 0
 // 5 4
-
-// Пример 2
-// Ввод	               Вывод
-// 5                   3
-// 0 1 0 0 1
-// 1 0 1 0 0
-// 0 1 0 0 0
-// 0 0 0 0 0
-// 1 0 0 0 0
-// 3 5
 
 class Node {
   constructor(data) {
@@ -94,18 +85,29 @@ class Deque {
 const bfs = (matrixArr, startV, endV, N) => {
   const queue = new Deque();
   const visited = new Set();
+  const prev = Array(N).fill(-1);
 
-  queue.pushBack([startV, 0]);
+  queue.pushBack(startV);
+  visited.add(startV);
 
   while (queue.size > 0) {
-    const [vertex, length] = queue.popFront();
+    const vertex = queue.popFront();
 
-    if (vertex === endV) return length;
+    if (vertex === endV) {
+      const path = [];
+
+      for (let v = endV; v !== -1; v = prev[v]) {
+        path.push(v);
+      }
+
+      return path.reverse();
+    }
 
     for (let i = 0; i < N; i += 1) {
       if (matrixArr[vertex][i] === 1 && !visited.has(i)) {
-        queue.pushBack([i, length + 1]);
+        queue.pushBack(i);
         visited.add(i);
+        prev[i] = vertex;
       }
     }
   }
@@ -118,5 +120,14 @@ const [[n], ...matrix] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n'
   line => line.trim().split(' ').map(Number)
 );
 const [start, end] = matrix.pop();
+const path = bfs(matrix, start - 1, end - 1, n);
 
-console.log(bfs(matrix, start - 1, end - 1, n));
+if (path === -1) {
+  console.log(-1);
+} else {
+  console.log(path.length - 1);
+
+  if (path.length > 1) {
+    console.log(path.map(v => v + 1).join(' '));
+  }
+}
