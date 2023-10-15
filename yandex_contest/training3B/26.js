@@ -32,7 +32,7 @@
 // 1 1 1 1 1
 
 const findMinPath = (N, M, table) => {
-  const dp = Array.from({ length: N}, () => Array(M).fill(Infinity));
+  const dp = Array.from({ length: N }, () => Array(M).fill(Infinity));
   dp[0][0] = table[0][0];
 
   for (let i = 1; i < N; i++) {
