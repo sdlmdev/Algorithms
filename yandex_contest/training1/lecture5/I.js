@@ -42,10 +42,6 @@
 // 2           0
 // abc
 
-const fs = require('fs');
-let [k, operations] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n');
-k = Number(k);
-
 const countOperations = (K, operationsArr) => {
   let res = 0;
   let length = 0;
@@ -61,5 +57,9 @@ const countOperations = (K, operationsArr) => {
 
   return res.toString();
 };
+
+const fs = require('fs');
+let [k, operations] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n');
+k = Number(k);
 
 fs.writeFileSync('output.txt', countOperations(k, operations));
