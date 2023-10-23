@@ -41,8 +41,8 @@
 // -1 0 1
 
 const fs = require('fs');
-const [length, ...nums] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(
+const [length, [...nums]] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(
   el => el.split(' ').map(Number)
 );
 
-fs.writeFileSync('output.txt', nums[0][Math.floor(length / 2)].toString());
+fs.writeFileSync('output.txt', nums[Math.floor(length / 2)].toString());
