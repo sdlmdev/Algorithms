@@ -28,7 +28,8 @@
 // 5 2         4 1
 // ababa
 
-const getSubstr = (dict, str, n, k) => {
+const getSubstr = (str, n, k) => {
+  const dict = {};
   let maxLength = 0;
   let start = 1;
   let l = 0;
@@ -51,8 +52,7 @@ const getSubstr = (dict, str, n, k) => {
 }
 
 const fs = require('fs');
-const [nk, str] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n');
+const [nk, string] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n');
 const [N, K] = nk.split(' ').map(Number);
-const letters = {};
 
-fs.writeFileSync('output.txt', getSubstr(letters, str, N, K));
+fs.writeFileSync('output.txt', getSubstr(string, N, K));
