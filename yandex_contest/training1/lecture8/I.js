@@ -1,4 +1,3 @@
-
 // I. Родословная: число потомков
 
 // Ограничение времени 1 секунда
@@ -60,7 +59,6 @@ const cntDescendants = (tree, rootData, descendantsData) => {
       let allVisited = true;
 
       for (let child of tree[node]) {
-
         if (!visited.has(child)) {
           stack.push(child);
           allVisited = false;
