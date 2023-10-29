@@ -54,8 +54,6 @@ const getNumOfOpts = (length, range, monumentsArr) => {
 };
 
 const fs = require('fs');
-let input = fs.readFileSync('input.txt', 'utf-8').trim().split('\n');
-const monuments = input.pop().split(' ').map(Number);
-const [n, r] = input.pop().split(' ').map(Number);
+let [[n, r], monuments] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(line => line.split(' ').map(Number));
 
 fs.writeFileSync('output.txt', getNumOfOpts(n, r, monuments));
