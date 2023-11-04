@@ -64,9 +64,11 @@ rl.on('line', line => {
 
   for (let i = 1; i < input.length - 1; i++) {
     if (tree[input[i]]) continue;
+
     addNode(tree, input[0], input[i]);
   }
 
   const height = calcHeight(tree, input[0]);
+
   console.log(height);
 });
