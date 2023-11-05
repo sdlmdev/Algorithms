@@ -33,11 +33,11 @@ rl.on('line', line => {
     if (a === 0) {
       rl.close();
 
-      return console.log(x === 0 ? 'MANY SOLUTIONS' : 'NO SOLUTION');
+      console.log(x === 0 ? 'MANY SOLUTIONS' : 'NO SOLUTION');
     } else {
       rl.close();
 
-      return console.log(x % a === 0 ? x / a : 'NO SOLUTION');
+      console.log(x % a === 0 ? x / a : 'NO SOLUTION');
     }
   }
 });
