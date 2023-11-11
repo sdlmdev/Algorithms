@@ -31,42 +31,38 @@ const rl = readline.createInterface({
 });
 
 rl.on('line', line => {
-  const dataArr = line.split(' ').map(Number);
+  const dataArr = line.trim().split(' ').map(Number);
 
   if (dataArr.length === 2) {
     rl.close();
 
-    return console.log(Math.min(dataArr[0], dataArr[1]), Math.max(dataArr[0], dataArr[1]));
+    return console.log(
+      Math.min(dataArr[0], dataArr[1]), Math.max(dataArr[0], dataArr[1])
+    );
   }
 
-  let a = 0;
-  let b = 0;
-  let c = 0;
-  let d = 0;
+  const max = [dataArr[0], dataArr[1]];
+  const min = [dataArr[0], dataArr[1]];
 
   for (let i = 0; i <= dataArr.length; i++) {
-    if (dataArr[i] > 0) {
-      if (dataArr[i] >= a) {
-        b = a;
-        a = dataArr[i];
-      } else if (dataArr[i] > b) {
-        b = dataArr[i];
-      }
-    } else {
-      if (dataArr[i] <= c) {
-        d = c;
-        c = dataArr[i];
-      } else if (dataArr[i] < d) {
-        d = dataArr[i];
-      }
+    if (dataArr[i] >= max[1]) {
+      max[0] = max[1];
+      max[1] = dataArr[i];
+    } else if (dataArr[i] > max[0]) {
+      max[0] = dataArr[i];
+    } else if (dataArr[i] <= min[1]) {
+      min[0] = min[1];
+      min[1] = dataArr[i];
+    } else if (dataArr[i] < min[0]) {
+      min[0] = dataArr[i];
     }
   }
 
   rl.close();
 
-  if (a * b > Math.abs(c * d)) {
-    console.log(Math.min(a, b), Math.max(a, b));
+  if (max[1] * max[0] > Math.abs(min[1] * min[0])) {
+    console.log(Math.min(max[1], max[0]), Math.max(max[1], max[0]));
   } else {
-    console.log(Math.min(c, d), Math.max(c, d));
+    console.log(Math.min(min[1], min[0]), Math.max(min[1], min[0]));
   }
 });
