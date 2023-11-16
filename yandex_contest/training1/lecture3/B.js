@@ -46,5 +46,4 @@ set1.forEach(i => {
 
 res = res.sort((a, b) => a - b);
 
-console.log(res);
 fs.writeFileSync('output.txt', res.join(' '));
