@@ -32,13 +32,13 @@ const fs = require('fs');
 let [gen1, gen2] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n');
 
 const getGenePairs = (str) => {
-  const gens = [];
+  const genes = [];
 
   for (let i = 0; i <= str.length - 2; i++) {
-    gens.push(str[i] + str[i + 1]);
+    genes.push(str[i] + str[i + 1]);
   }
 
-  return gens;
+  return genes;
 }
 
 const set1 = getGenePairs(gen1);
