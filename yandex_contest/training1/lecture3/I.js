@@ -43,14 +43,8 @@ length = +length;
 const languageIndexes = {};
 const languages = new Set();
 
-for (let i = 0, k = 0; i < data.length; i++) {
-  if (Number.isInteger(+data[i])) {
-    k++;
-
-    if (k === length) {
-      k = 0;
-    }
-  } else {
+for (let i = 0; i < data.length; i++) {
+  if (!Number.isInteger(+data[i])) {
     const language = data[i];
 
     languages.add(language);
@@ -59,7 +53,7 @@ for (let i = 0, k = 0; i < data.length; i++) {
       languageIndexes[language] = [];
     }
 
-    languageIndexes[language].push(k);
+    languageIndexes[language].push(language);
   }
 }
 
