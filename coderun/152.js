@@ -33,7 +33,6 @@
 //         1 3 4 5
 
 const readline = require('readline');
-
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -42,7 +41,7 @@ const rl = readline.createInterface({
 rl.on('line', line => {
   const input = +line;
   const nums = new Array(input + 1).fill(0);
-  let steps = new Array(input + 1).fill(10 ** 6);
+  const steps = new Array(input + 1).fill(10 ** 6);
   steps[1] = 0;
 
   rl.close();
@@ -51,27 +50,18 @@ rl.on('line', line => {
     if (i % 3 === 0) {
       let cur = steps[i / 3] + 1;
 
-      if (cur < steps[i]) {
-        steps[i] = cur;
-        nums[i] = i / 3;
-      }
+      if (cur < steps[i]) steps[i] = cur, nums[i] = i / 3;
     }
 
     if (i % 2 === 0) {
       let cur = steps[i / 2] + 1;
 
-      if (cur < steps[i]) {
-        steps[i] = cur;
-        nums[i] = i / 2;
-      }
+      if (cur < steps[i]) steps[i] = cur, nums[i] = i / 2;
     }
 
     let cur = steps[i - 1] + 1;
 
-    if (cur < steps[i]) {
-      steps[i] = cur;
-      nums[i] = i - 1;
-    }
+    if (cur < steps[i]) steps[i] = cur, nums[i] = i - 1;
   }
 
   let res = [];
