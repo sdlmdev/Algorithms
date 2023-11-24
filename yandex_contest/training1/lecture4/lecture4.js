@@ -64,3 +64,48 @@ const countRookPairs = (rookcoords) => {
 };
 
 console.log(countRookPairs([[1, 1], [1, 2], [3, 4], [5, 4], [3, 3]]));
+
+// Задача 3
+
+// Дана строка S. Выведите гистограмму как в примере (коды символов отсортированы) S = Hello, world!
+
+//       #
+//       ##
+// ##########
+//  !,Hdelorw
+
+const getHistogram = (str) => {
+  const dict = {};
+  let maxCount = 0;
+
+  for (let sym of str) {
+    if (dict[sym]) {
+      dict[sym]++;
+    } else {
+      dict[sym] = 1;
+    }
+
+    maxCount = Math.max(maxCount, dict[sym]);
+  }
+  
+  const sortedDict = Object.keys(dict).sort();
+  const res = [];
+
+  for (let count = maxCount; count > 0; count--) {
+    for (let key of sortedDict) {
+      if (dict[key] >= count) {
+        res.push('#');
+      } else {
+        res.push(' ');
+      }
+    }
+
+    res.push('\n');
+  }
+
+  res.push(sortedDict.join(''));
+
+  return res.join('');
+};
+
+console.log(getHistogram('Hello, world!'));
