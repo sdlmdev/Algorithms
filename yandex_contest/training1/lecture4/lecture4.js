@@ -113,6 +113,8 @@ console.log(getHistogram('Hello, world!'));
 // Задача 4
 
 // Сгруппировать слова по общим буквам
+// ['cat', 'dog', 'god', 'tca', 'gda']
+// [['cat', 'tca'], ['dog', 'god'], ['gda']]
 
 const groupWords = (arr) => {
   const dict = {};
