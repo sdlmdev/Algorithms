@@ -109,3 +109,25 @@ const getHistogram = (str) => {
 };
 
 console.log(getHistogram('Hello, world!'));
+
+// Задача 4
+
+// Сгруппировать слова по общим буквам
+
+const groupWords = (arr) => {
+  const dict = {};
+
+  for (let word of arr) {
+    const sortWord = word.split('').sort().join('');
+
+    if (dict[sortWord]) {
+      dict[sortWord].push(word);
+    } else {
+      dict[sortWord] = [word];
+    }
+  }
+
+  return Object.values(dict);
+};
+
+console.log(groupWords(['cat', 'dog', 'god', 'tca', 'gda']));
