@@ -105,9 +105,10 @@ const modifyDict = (dict1, dict2, subtrahendSym, countModifier) => {
 };
 
 const findOccurrences = (dict1, dict2, lenG, lenS, sSym) => {
-  let coincidences = countMatch(dict1, dict2);
-  let occurrences = coincidences === Object.keys(dict1).length ? 1 : 0;
   const length = Object.keys(dict1).length;
+  let coincidences = countMatch(dict1, dict2);
+  let occurrences = coincidences === length ? 1 : 0;
+  
 
   for (let i = lenG; i < lenS; i++) {
     coincidences += modifyDict(dict1, dict2, sSym[i - lenG], -1);
