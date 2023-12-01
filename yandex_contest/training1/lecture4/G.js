@@ -90,9 +90,6 @@
 // BALANCE a
 // BALANCE b
 
-const fs = require('fs');
-const operations = fs.readFileSync('input.txt', 'utf8').trim().split('\n');
-
 const getBalance = (dataArr) => {
   const customerBalances = {};
   const res = [];
@@ -141,5 +138,8 @@ const getBalance = (dataArr) => {
 
   return res.join('\n');
 };
+
+const fs = require('fs');
+const operations = fs.readFileSync('input.txt', 'utf8').trim().split('\n');
 
 fs.writeFileSync('output.txt', getBalance(operations));
