@@ -74,6 +74,7 @@ const getSegment = (n, k, treesArr) => {
 }
 
 const fs = require('fs');
-const [[N, K], trees] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(line => line.split(' ').map(Number));
+const [[N, K], trees] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(
+  line => line.split(' ').map(Number));
 
 fs.writeFileSync('output.txt', getSegment(N, K, trees));
