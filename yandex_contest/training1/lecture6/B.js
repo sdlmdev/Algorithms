@@ -63,7 +63,7 @@ const binarySearch = (l, r, dataArr, x) => {
     }
   }
 
-  if (l > 0 && Math.abs(dataArr[l - 1] - x) <= Math.abs(dataArr[l] - x)) {
+  if (Math.abs(dataArr[l - 1] - x) <= Math.abs(dataArr[l] - x)) {
     return dataArr[l - 1];
   } else {
     return dataArr[l];
