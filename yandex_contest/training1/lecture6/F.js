@@ -34,10 +34,6 @@ const checkCopies = (time, params) => {
   const fastest = Math.min(x, y);
   const slowest = Math.max(x, y);
 
-  if (time < fastest) {
-    return false;
-  }
-
   return Math.floor((time - fastest) / fastest) + Math.floor((time - fastest) / slowest) >= n - 1;
 };
 
