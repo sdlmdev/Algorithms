@@ -50,12 +50,6 @@
 // 0 2 5 9 14 20
 // 1 7 16 16 21 22
 
-const fs = require('fs');
-const [nl, ...sequences] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(
-  i => i.trim().split(' ').filter(val => val != '').map(el => Number(el))
-);
-const [n, l] = nl;
-
 const getSequence = (l, x1, d1, a, c, m) => {
   const seq = [x1];
   let d = d1;
@@ -67,8 +61,6 @@ const getSequence = (l, x1, d1, a, c, m) => {
 
   return seq;
 };
-
-const seqs = sequences.map(seq => getSequence(l, ...seq));
 
 const binarySearch = (l, r, seq, val) => {
   while (l < r) {
@@ -122,5 +114,12 @@ const getMedians = (seq) => {
 
   return medians;
 };
+
+const fs = require('fs');
+const [nl, ...sequences] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(
+  i => i.trim().split(' ').filter(val => val != '').map(el => Number(el))
+);
+const [n, l] = nl;
+const seqs = sequences.map(seq => getSequence(l, ...seq));
 
 fs.writeFileSync('output.txt', getMedians(seqs).join('\n'));
