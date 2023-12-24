@@ -48,7 +48,7 @@ const findOccurrences = (segmentsArr, pointsArr, N, M) => {
   let cnt = 0;
   const res = Array(M);
 
-  for (let point of events) {
+  for (const point of events) {
     if (point[1] === -1) {
       cnt += 1;
     } else if (point[1] === 1) {
