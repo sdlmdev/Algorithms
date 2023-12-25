@@ -1,4 +1,3 @@
-
 // F. Современники
 
 // Ограничение времени 	3 секунды
@@ -67,9 +66,9 @@ const getGroupsOfPeople = (N, datesArr) => {
   for (let i = 0; i < N; i++) {
     const [dStart, mStart, yStart, dEnd, mEnd, yEnd] = datesArr[i];
     const startDate =  new Date(Date.parse(formatDate(yStart + 18, mStart, dStart)));
-    let updateStart = new Date(Date.parse(formatDate(yStart + 80, mStart, dStart)));
-    let dateEnd = new Date(Date.parse(formatDate(yEnd, mEnd, dEnd)));
-    let endDate = updateStart < dateEnd ? updateStart : dateEnd;
+    const updateStart = new Date(Date.parse(formatDate(yStart + 80, mStart, dStart)));
+    const dateEnd = new Date(Date.parse(formatDate(yEnd, mEnd, dEnd)));
+    const endDate = updateStart < dateEnd ? updateStart : dateEnd;
 
     if (startDate < endDate) {
       events.push([startDate, 1, i + 1]);
