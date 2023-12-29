@@ -26,11 +26,6 @@
 // 7 10
 // 1 6
 
-const fs = require('fs');
-const segments = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(el => el.trim().split(' ').map(Number));
-const [n, m] = segments.shift();
-const points = segments.pop();
-
 const findOccurrences = (segmentsArr, pointsArr, N, M) => {
   const events = Array(N * 2);
 
@@ -44,7 +39,7 @@ const findOccurrences = (segmentsArr, pointsArr, N, M) => {
     }
   }
 
-  for (let point in pointsArr) {
+  for (const point in pointsArr) {
     events.push([pointsArr[point], 0, +point]);
   }
 
@@ -65,5 +60,10 @@ const findOccurrences = (segmentsArr, pointsArr, N, M) => {
 
   return res.join(' ');
 };
+
+const fs = require('fs');
+const segments = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(el => el.trim().split(' ').map(Number));
+const [n, m] = segments.shift();
+const points = segments.pop();
 
 fs.writeFileSync('output.txt', findOccurrences(segments, points, n, m));
