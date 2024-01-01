@@ -95,6 +95,7 @@ rl.on('line', (line) => {
 
   if (!N && !M) {
     [N, M] = data.map(Number);
+
     for (let i = 0; i < N; i++) {
       cntBuses.push(0);
       balance.push(0);
