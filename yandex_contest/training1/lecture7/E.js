@@ -56,9 +56,6 @@
 // то есть одновременно кассы не работают.
 // 3) Вместе кассы работают лишь одну минуту – с 14:00 до 14:01 (в 14:01 вторая касса уже не работает).
 
-const fs = require('fs');
-const [n, ...time] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(el => el.split(' ').map(Number));
-
 const findOpeningHours = (N, timeArr) => {
   const events = [];
 
@@ -82,6 +79,7 @@ const findOpeningHours = (N, timeArr) => {
 
   for (let i in events) {
     if (cnt === N) res += events[i][0] - events[i - 1][0];
+
     if (events[i][1] === 1) {
       cnt++;
     } else {
@@ -91,5 +89,8 @@ const findOpeningHours = (N, timeArr) => {
 
   return res;
 };
+
+const fs = require('fs');
+const [n, ...time] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(el => el.split(' ').map(Number));
 
 fs.writeFileSync('output.txt', findOpeningHours(n[0], time).toString());

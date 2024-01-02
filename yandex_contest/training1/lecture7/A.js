@@ -58,6 +58,7 @@ const countCheaters = (n, tables) => {
 
   for (let i = 0; i < events.length - 1; i++) {
     observers += events[i][1];
+
     if (observers === 0) {
       cheaters += events[i + 1][0] - events[i][0];
     }
