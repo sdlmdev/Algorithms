@@ -15,9 +15,8 @@
 // Выведите ответ на задачу.
 
 // Пример
-// Ввод	Вывод
-// 7 3 2 1 9 5 4 6 8 0
-// 8
+// Ввод	                  Вывод
+// 7 3 2 1 9 5 4 6 8 0    8
 
 const readline = require('readline');
 const rl = readline.createInterface({
