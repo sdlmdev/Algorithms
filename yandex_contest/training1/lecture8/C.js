@@ -56,3 +56,40 @@ rl.on('line', line => {
 
   console.log(Object.keys(tree)[Object.keys(tree).length - 2]);
 });
+
+// --------------------------------------------------------------------------
+
+const dfs = (tree, node, firstMaxEl, secondMaxEl) => {
+  if (node === -1) return [firstMaxEl, secondMaxEl];
+
+  if (node > firstMaxEl) {
+    secondMaxEl = firstMaxEl;
+    firstMaxEl = node;
+  } else if (node > secondMaxEl && node < firstMaxEl) {
+    secondMaxEl = node;
+  }
+
+  [firstMaxEl, secondMaxEl] = dfs(tree, tree[node][1], firstMaxEl, secondMaxEl);
+  [firstMaxEl, secondMaxEl] = dfs(tree, tree[node][2], firstMaxEl, secondMaxEl);
+
+  return [firstMaxEl, secondMaxEl];
+};
+
+rl.on('line', line => {
+  rl.close();
+
+  const input = line.split(' ').map(Number);
+  const tree = {
+    [input[0]]: [input[0], -1, -1],
+  };
+
+  for (let i = 1; i < input.length - 1; i++) {
+    if (tree[input[i]]) continue;
+
+    addNode(tree, input[0], input[i]);
+  }
+
+  const [max, secondMax] = dfs(tree, input[0], -Infinity, -Infinity);
+
+  console.log(secondMax);
+});
