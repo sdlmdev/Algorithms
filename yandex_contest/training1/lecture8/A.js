@@ -33,17 +33,17 @@ const addNode = (treeData, root, val) => {
       treeData[root][1] = val;
       treeData[val] = [val, -1, -1];
     } else {
-      addNode(treeData, treeData[root][1], val)
+      addNode(treeData, treeData[root][1], val);
     }
   } else {
     if (treeData[root][2] === -1) {
       treeData[root][2] = val;
       treeData[val] = [val, -1, -1];
     } else {
-      addNode(treeData, treeData[root][2], val)
+      addNode(treeData, treeData[root][2], val);
     }
   }
-}
+};
 
 const calcHeight = (treeData, root) => {
   if (root === -1) return 0;
@@ -52,7 +52,7 @@ const calcHeight = (treeData, root) => {
   const rightHeight = calcHeight(treeData, treeData[root][2]);
 
   return Math.max(leftHeight, rightHeight) + 1;
-}
+};
 
 rl.on('line', line => {
   rl.close();
