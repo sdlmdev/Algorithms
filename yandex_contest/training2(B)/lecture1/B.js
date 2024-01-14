@@ -47,5 +47,6 @@ const rl = readline.createInterface({
 rl.on('line', line => {
   rl.close();
   const [n, i, j] = line.split(' ').map(Number);
-  return console.log(Math.min(Math.abs(i - j) - 1, n - Math.abs(i - j) - 1));
+
+  console.log(Math.min(Math.abs(i - j) - 1, n - Math.abs(i - j) - 1));
 });
