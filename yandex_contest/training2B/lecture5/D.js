@@ -34,7 +34,7 @@ const readline = require('readline').createInterface({
   for (let i = 0; i < line.length; i++) {
     if (line[i] === '(') cnt += 1;
     else cnt -= 1;
-    if (cnt < 0) return console.log('NO'); ;
+    if (cnt < 0) return console.log('NO');
   }
   
   console.log(cnt === 0 ? 'YES' : 'NO');
