@@ -63,12 +63,9 @@ const floorDiv = (a, b) => (a - a % b) / b;
 
 const findDays = (A, K, B, M, X, l, r) => {
   while (l < r) {
-
     const days = floorDiv(l + r, 2n);
-
     const first = floorDiv(days, BigInt(K));
     const second = floorDiv(days, BigInt(M));
-
     const trees = (days - first) * A + (days - second) * B;
 
     if (trees < X) {
