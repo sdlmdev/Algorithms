@@ -73,7 +73,7 @@ const fs = require('fs');
 const [[n, m], ...vertices] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(
   line => line.trim().split(' ').map(Number)
 );
-const graph = Array.from({ length: n + 1}, () => []);
+const graph = Array.from({ length: n + 1 }, () => []);
 const colors = new Array(n + 1).fill(0);
 
 fillGraph(graph, vertices);
