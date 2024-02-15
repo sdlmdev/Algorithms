@@ -37,7 +37,7 @@
 // 6 4         1
 // 3 6         5
 
-const fiilGraph = (graphArr, verticesArr) => {
+const fillGraph = (graphArr, verticesArr) => {
   for (const [v1, v2] of verticesArr) {
     graphArr[v1].push(v2);
     graphArr[v2].push(v1);
@@ -98,5 +98,5 @@ const [[n, m], ...vertices] = fs.readFileSync('input.txt', 'utf8').trim().split(
 const graph = Array.from({ length: n + 1 }, () => []);
 const visited = Array(n + 1).fill(false);
 
-fiilGraph(graph, vertices);
+fillGraph(graph, vertices);
 getRes(graph, visited);
