@@ -88,7 +88,7 @@ const getRes = (graphArr, visitedArr) => {
     res.push(component.join(' '));
   }
 
-  return res.join('\n');
+  console.log(res.join('\n'));
 };
 
 const fs = require('fs');
@@ -99,4 +99,4 @@ const graph = Array.from({ length: n + 1 }, () => []);
 const visited = Array(n + 1).fill(false);
 
 fiilGraph(graph, vertices);
-console.log(getRes(graph, visited));
+getRes(graph, visited);
