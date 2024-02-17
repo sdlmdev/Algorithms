@@ -44,6 +44,7 @@
 const fillGraph = (lines, graphArr, M) => {
   for (let i = 0; i < M; i++) {
     const [P, ...stations] = lines[i];
+
     for (let j = 0; j < P; j++) {
       for (let k = j + 1; k < P; k++) {
         graphArr[stations[j]].push({ station: stations[k], line: i });
