@@ -97,4 +97,7 @@ let root = [...parents].filter(parent => !children.has(parent))[0];
 
 cntDescendants(parentChild, root, descendants);
 
-fs.writeFileSync('output.txt', Object.entries(descendants).sort().map(el => `${el[0]} ${el[1]}`).join('\n'));
+fs.writeFileSync(
+  'output.txt',
+  Object.entries(descendants).sort().map(el => `${el[0]} ${el[1]}`).join('\n')
+);

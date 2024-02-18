@@ -1,6 +1,6 @@
 // I. Узник замка Иф
 
-// Ограничение времени	1 секунда
+// Ограничение времени 1 секунда
 // Ограничение памяти	64Mb
 // Ввод	стандартный ввод или input.txt
 // Вывод стандартный вывод или output.txt
@@ -17,16 +17,16 @@
 // Программа должна вывести слово YES или NO.
 
 // Пример 1
-// Ввод	  Вывод
-// 1      YES
+// Ввод	    Вывод
+// 1        YES
 // 1
 // 1
 // 1
 // 1
 
 // Пример 2
-// Ввод	  Вывод
-// 2      NO
+// Ввод	    Вывод
+// 2        NO
 // 2
 // 2
 // 1
@@ -49,38 +49,38 @@ if (((A <= D) && (B <= E)) || ((A <= E) && (B <= D))) {
 
 // ------------------------------------------------------------------
 
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-});
+// const readline = require('readline');
+// const rl = readline.createInterface({
+//   input: process.stdin,
+// });
 
-const data = [];
+// const data = [];
 
-rl.on('line', line => {
-  data.push(+line);
+// rl.on('line', line => {
+//   data.push(+line);
 
-  if (data.length === 5) {
-    let [a, b, c, d, e] = data;
+//   if (data.length === 5) {
+//     let [a, b, c, d, e] = data;
 
-    rl.close();
+//     rl.close();
 
-    const sort = (firstElem, secondElem) => {
-      if (firstElem < secondElem) {
-        return [firstElem, secondElem];
-      }
+//     const sort = (firstElem, secondElem) => {
+//       if (firstElem < secondElem) {
+//         return [firstElem, secondElem];
+//       }
 
-      return [secondElem, firstElem];
-    };
+//       return [secondElem, firstElem];
+//     };
 
-    [a, b] = sort(a, b);
-    [b, c] = sort(b, c);
-    [a, b] = sort(a, b);
-    [d, e] = sort(d, e);
+//     [a, b] = sort(a, b);
+//     [b, c] = sort(b, c);
+//     [a, b] = sort(a, b);
+//     [d, e] = sort(d, e);
 
-    if (a <= d && b <= e) {
-      console.log('YES');
-    } else {
-      console.log('NO');
-    }
-  }
-});
+//     if (a <= d && b <= e) {
+//       console.log('YES');
+//     } else {
+//       console.log('NO');
+//     }
+//   }
+// });

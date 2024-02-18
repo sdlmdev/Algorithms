@@ -1,6 +1,6 @@
 // J. Родословная: подсчет уровней
 
-// Ограничение времени	1 секунда
+// Ограничение времени 1 секунда
 // Ограничение памяти	64Mb
 // Ввод	стандартный ввод или input.txt
 // Вывод стандартный вывод или output.txt
@@ -104,4 +104,7 @@ let root = [...parents].filter(parent => !children.has(parent))[0];
 
 cntHeights(parentChild, root, heights);
 
-fs.writeFileSync('output.txt', Object.entries(heights).sort().map(el => `${el[0]} ${el[1]}`).join('\n'));
+fs.writeFileSync(
+  'output.txt',
+  Object.entries(heights).sort().map(el => `${el[0]} ${el[1]}`).join('\n')
+);

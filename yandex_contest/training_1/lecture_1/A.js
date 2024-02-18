@@ -1,6 +1,6 @@
 // A. Кондиционер
 
-// Ограничение времени	1 секунда
+// Ограничение времени 1 секунда
 // Ограничение памяти	64Mb
 // Ввод	стандартный ввод или input.txt
 // Вывод стандартный вывод или output.txt
@@ -84,38 +84,38 @@ fs.writeFileSync('output.txt', result.toString());
 
 // ------------------------------------------------------
 
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-});
+// const readline = require('readline');
+// const rl = readline.createInterface({
+//   input: process.stdin,
+// });
 
-const data = [];
-let result;
+// const data = [];
+// let result;
 
-rl.on('line', line => {
-  data.push(line);
+// rl.on('line', line => {
+//   data.push(line);
   
-  if (data.length === 2){
-    const [temp, mode] = data;
-    const [troom, tcond] = temp.split(' ').map(Number);
+//   if (data.length === 2){
+//     const [temp, mode] = data;
+//     const [troom, tcond] = temp.split(' ').map(Number);
     
-    switch (mode) {
-  	  case 'freeze':
-        result = Math.min(troom, tcond);
-        break;
-      case 'heat':
-      	result = Math.max(troom, tcond);
-      	break;
-  	  case 'auto':
-      	result = tcond;
-      	break;
-  	  case 'fan':
-      	result = troom;
-      	break;
-	  }
+//     switch (mode) {
+//   	  case 'freeze':
+//         result = Math.min(troom, tcond);
+//         break;
+//       case 'heat':
+//       	result = Math.max(troom, tcond);
+//       	break;
+//   	  case 'auto':
+//       	result = tcond;
+//       	break;
+//   	  case 'fan':
+//       	result = troom;
+//       	break;
+// 	  }
     
-    rl.close();
+//     rl.close();
     
-    console.log(result);
-  }
-})
+//     console.log(result);
+//   }
+// })

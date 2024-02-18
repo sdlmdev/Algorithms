@@ -1,7 +1,7 @@
 // E. Дерево Хаффмана
 
-// Ограничение времени 	1 секунда
-// Ограничение памяти  64Mb
+// Ограничение времени 1 секунда
+// Ограничение памяти 64Mb
 // Ввод стандартный ввод или input.txt
 // Вывод стандартный вывод или output.txt
 
@@ -121,6 +121,7 @@ const traverse = (root, prefix = []) => {
   }
 
   let res = [];
+
   if (root.left) {
     prefix.push('0');
     res = res.concat(traverse(root.left, prefix));
@@ -144,6 +145,7 @@ for (let i = 0; i < n; i++) {
   const res = traverse(tree);
   
   console.log(res.length);
+
   for (let code of res) {
     console.log(code);
   }

@@ -1,6 +1,6 @@
 // A. Количество совпадающих
 
-// Ограничение времени	3 секунды
+// Ограничение времени 3 секунды
 // Ограничение памяти	64Mb
 // Ввод	стандартный ввод или input.txt
 // Вывод стандартный вывод или output.txt
@@ -43,7 +43,6 @@ readline.on('line', line => {
   } else {
     set2 = new Set(line.split(' '));
     readline.close();
-
     console.log([...set1].filter(x => set2.has(x)).length);
   }
 });

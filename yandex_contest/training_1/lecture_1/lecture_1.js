@@ -4,7 +4,6 @@
 // Если несколько символов встречаются одиноково часто, то можно вывести любой
 
 const readline = require('readline');
-
 const rl = readline.createInterface({
   input: process.stdin,
 });

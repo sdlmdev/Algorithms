@@ -1,6 +1,6 @@
 // D. Количество слов в тексте
 
-// Ограничение времени	1 секунда
+// Ограничение времени 1 секунда
 // Ограничение памяти	64Mb
 // Ввод	стандартный ввод или input.txt
 // Вывод стандартный вывод или output.txt
@@ -25,7 +25,6 @@
 
 const fs = require('fs');
 let input = fs.readFileSync('input.txt', 'utf-8').trim();
-
 const res = input === '' ? 0 : new Set(input.split(/[ \n]+/)).size;
 
 fs.writeFileSync('output.txt', res.toString());

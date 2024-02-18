@@ -1,6 +1,6 @@
 // A. Количество различных чисел
 
-// Ограничение времени	1 секунда
+// Ограничение времени 1 секунда
 // Ограничение памяти	64Mb
 // Ввод	стандартный ввод или input.txt
 // Вывод стандартный вывод или output.txt
@@ -32,27 +32,27 @@ const rl = readline.createInterface({
 });
 
 rl.on('line', line => {
-  const input = line.split(' ');
-  const list = new Set();
-
-  for (let i of input) {
-    if (!list.has(i)) {
-      list.add(i);
-    }
-  }
-
   rl.close();
-  console.log(list.size);
+  console.log(new Set(line.split(' ')).size);
 });
 
 // --------------------------------------
 
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-});
+// const readline = require('readline');
+// const rl = readline.createInterface({
+//   input: process.stdin,
+// });
 
-rl.on('line', line => {
-  rl.close();
-  console.log(new Set(line.split(' ')).size);
-});
+// rl.on('line', line => {
+//   const input = line.split(' ');
+//   const list = new Set();
+
+//   for (let i of input) {
+//     if (!list.has(i)) {
+//       list.add(i);
+//     }
+//   }
+
+//   rl.close();
+//   console.log(list.size);
+// });
