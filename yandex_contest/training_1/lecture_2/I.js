@@ -47,73 +47,6 @@
 const fs = require('fs');
 const input = fs.readFileSync('input.txt', 'utf-8');
 let [arr, ...minCoordinates] = input.trim().split('\n');
-const [rows, columns] = arr.split(' ').map(Number);
-let elements = rows * columns;
-const res = [];
-const mineCoordinatesArr = [];
-
-for (let i = 0; i < minCoordinates.length; i++) {
-  const arr = minCoordinates[i].split(' ');
-  mineCoordinatesArr.push(arr);
-}
-
-for (let i = 0; i < elements; i++) {
-  if (i % columns === 0) {
-    res.push([]);
-  }
-
-  res[res.length - 1].push(0);
-}
-
-for (let i = 0; i < mineCoordinatesArr.length; i++) {
-  res[mineCoordinatesArr[i][0] - 1][mineCoordinatesArr[i][1] - 1] = '*';
-}
-
-for (let i = 0; i < res.length; i++) {
-  for (let j = 0; j < res[i].length; j++) {
-    if (res[i][j] !== '*') {
-      if (res[i][j + 1] === '*') {
-        res[i][j] += 1;
-      }
-  
-      if (res[i][j - 1] === '*') {
-        res[i][j] += 1;
-      }
-  
-      if (res[i + 1] && res[i + 1][j] === '*') {
-        res[i][j] += 1;
-      }
-  
-      if (res[i - 1] && res[i - 1][j] === '*') {
-        res[i][j] += 1;
-      }
-  
-      if (res[i + 1] && res[i + 1][j + 1] === '*') {
-        res[i][j] += 1;
-      }
-  
-      if (res[i + 1] && res[i + 1][j - 1] === '*') {
-        res[i][j] += 1;
-      }
-  
-      if (res[i - 1] && res[i - 1][j - 1] === '*') {
-        res[i][j] += 1;
-      }
-  
-      if (res[i - 1] && res[i - 1][j + 1] === '*') {
-        res[i][j] += 1;
-      }
-    }
-  }
-}
-
-fs.writeFileSync('output.txt', res.map(row => row.join(' ')).join('\n'));
-
-// ----------------------------------------------------------------------------------
-
-const fs = require('fs');
-const input = fs.readFileSync('input.txt', 'utf-8');
-let [arr, ...minCoordinates] = input.trim().split('\n');
 let [rows, columns] = arr.split(' ').map(Number);
 
 const makeField = (rows, columns, mines) => {
@@ -151,3 +84,70 @@ for (let i = 1; i <= rows; i++) {
 }
 
 fs.writeFileSync('output.txt', res.join('\n'));
+
+// ----------------------------------------------------------------------------------
+
+// const fs = require('fs');
+// const input = fs.readFileSync('input.txt', 'utf-8');
+// let [arr, ...minCoordinates] = input.trim().split('\n');
+// const [rows, columns] = arr.split(' ').map(Number);
+// let elements = rows * columns;
+// const res = [];
+// const mineCoordinatesArr = [];
+
+// for (let i = 0; i < minCoordinates.length; i++) {
+//   const arr = minCoordinates[i].split(' ');
+//   mineCoordinatesArr.push(arr);
+// }
+
+// for (let i = 0; i < elements; i++) {
+//   if (i % columns === 0) {
+//     res.push([]);
+//   }
+
+//   res[res.length - 1].push(0);
+// }
+
+// for (let i = 0; i < mineCoordinatesArr.length; i++) {
+//   res[mineCoordinatesArr[i][0] - 1][mineCoordinatesArr[i][1] - 1] = '*';
+// }
+
+// for (let i = 0; i < res.length; i++) {
+//   for (let j = 0; j < res[i].length; j++) {
+//     if (res[i][j] !== '*') {
+//       if (res[i][j + 1] === '*') {
+//         res[i][j] += 1;
+//       }
+  
+//       if (res[i][j - 1] === '*') {
+//         res[i][j] += 1;
+//       }
+  
+//       if (res[i + 1] && res[i + 1][j] === '*') {
+//         res[i][j] += 1;
+//       }
+  
+//       if (res[i - 1] && res[i - 1][j] === '*') {
+//         res[i][j] += 1;
+//       }
+  
+//       if (res[i + 1] && res[i + 1][j + 1] === '*') {
+//         res[i][j] += 1;
+//       }
+  
+//       if (res[i + 1] && res[i + 1][j - 1] === '*') {
+//         res[i][j] += 1;
+//       }
+  
+//       if (res[i - 1] && res[i - 1][j - 1] === '*') {
+//         res[i][j] += 1;
+//       }
+  
+//       if (res[i - 1] && res[i - 1][j + 1] === '*') {
+//         res[i][j] += 1;
+//       }
+//     }
+//   }
+// }
+
+// fs.writeFileSync('output.txt', res.map(row => row.join(' ')).join('\n'));
