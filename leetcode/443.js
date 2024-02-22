@@ -42,7 +42,7 @@ const compress = (str) => {
     let cnt = 0;
     const cur = str[r];
 
-    while (r < str.length && str[r] === cur) {
+    while (str[r] === cur) {
       cnt += 1;
       r += 1;
     }
