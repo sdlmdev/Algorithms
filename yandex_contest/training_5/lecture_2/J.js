@@ -196,7 +196,9 @@ const checkRectangles = (M, N, pictureData) => {
   console.log('YES');
 
   if (cycleCnt === 2) {
-    pictureData = pictureData.reverse()[0].map((_, colIndex) => pictureData.map((row) => row[colIndex]).reverse());
+    pictureData = pictureData.reverse()[0].map(
+      (_, colIndex) => pictureData.map((row) => row[colIndex]).reverse()
+    );
   }
 
   return pictureData.map(row => row.join('')).join('\n');

@@ -63,7 +63,9 @@ const findCommonSongs = (N, songs) => {
 };
 
 const fs = require('fs');
-let [n, ...lines] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(line => line.split(' '));
+let [n, ...lines] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(
+  line => line.split(' ')
+);
 lines = lines.filter((el, i) => i % 2 !== 0).flat();
 n = +n;
 

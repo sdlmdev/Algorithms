@@ -128,7 +128,7 @@ const findRaceAndClassToBan = (N, M, powersArr) => {
         }
       }
     }
-    
+
     return [firstMaxIndex[0] + 1, newSecondMaxIndex[1] + 1].join(' ');
   } else if (firstMaxIndex[1] === thirdMaxIndex[1]) {
     return [secondMaxIndex[0] + 1, firstMaxIndex[1] + 1].join(' ');
@@ -139,11 +139,14 @@ const findRaceAndClassToBan = (N, M, powersArr) => {
   } else if (secondMaxIndex[0] === firstMaxIndex[0]) {
     return [firstMaxIndex[0] + 1, thirdMaxIndex[1] + 1].join(' ');
   }
-  else if (firstMaxIndex[0] !== secondMaxIndex[0] && firstMaxIndex[0] !== thirdMaxIndex[0]
-    && secondMaxIndex[0] !== thirdMaxIndex[0] && firstMaxIndex[1] !== secondMaxIndex[1] && firstMaxIndex[1] !== thirdMaxIndex[1]
+  else if (firstMaxIndex[0] !== secondMaxIndex[0]
+    && firstMaxIndex[0] !== thirdMaxIndex[0]
+    && secondMaxIndex[0] !== thirdMaxIndex[0]
+    && firstMaxIndex[1] !== secondMaxIndex[1]
+    && firstMaxIndex[1] !== thirdMaxIndex[1]
     && secondMaxIndex[1] !== thirdMaxIndex[1]) {
-      return [secondMaxIndex[0] + 1, firstMaxIndex[1] + 1].join(' ');
-    }
+    return [secondMaxIndex[0] + 1, firstMaxIndex[1] + 1].join(' ');
+  }
   else {
     return [firstMaxIndex[0] + 1, secondMaxIndex[1] + 1].join(' ');
   }

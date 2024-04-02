@@ -47,18 +47,23 @@ class Calculator {
   }
 
   checkHeight(index) {
-    return (this.yValues[index + 1] < this.yValues[index]) && (this.yValues[index] > this.yValues[index - 1]);
+    return (this.yValues[index + 1] < this.yValues[index])
+      && (this.yValues[index] > this.yValues[index - 1]);
   }
 
   findMinY(left, right) {
-    return this.yValues.slice(left, right + 1).reduce((min, y) => Math.min(min, y), this.yValues[left]);
+    return this.yValues.slice(left, right + 1).reduce(
+      (min, y) => Math.min(min, y), this.yValues[left]
+    );
   }
 
   calcVolumes(left, maxIndex, right, maxY, volume) {
     const volumeLeftActual = this.findVolume(left, maxIndex, maxY);
     const volumeRightActual = this.findVolume(maxIndex, right, maxY);
-    const volumeLeftExpected = (this.xValues[maxIndex] - this.xValues[left]) / (this.xValues[right] - this.xValues[left]) * volume;
-    const volumeRightExpected = (this.xValues[right] - this.xValues[maxIndex]) / (this.xValues[right] - this.xValues[left]) * volume;
+    const volumeLeftExpected = (this.xValues[maxIndex] - this.xValues[left]) / (
+      this.xValues[right] - this.xValues[left]) * volume;
+    const volumeRightExpected = (this.xValues[right] - this.xValues[maxIndex]) / (
+      this.xValues[right] - this.xValues[left]) * volume;
 
     return { volumeLeftActual, volumeRightActual, volumeLeftExpected, volumeRightExpected };
   }
@@ -72,40 +77,46 @@ class Calculator {
       const currentX = this.xValues[i];
       const nextX = this.xValues[i + 1];
       const deltaX = nextX - currentX;
-    
+
       if ((height < nextHeight) && (height < currentHeight)) continue;
-    
+
       if ((height > nextHeight) && (height > currentHeight)) {
         const volumeIncrement = deltaX * (height - currentHeight + height - nextHeight) / 2;
         volume += volumeIncrement;
         continue;
       }
-    
+
       const x = currentX + (height - currentHeight) / (nextHeight - currentHeight) * deltaX;
-    
+
       if (currentHeight < height) {
         const volumeIncrement = (x - currentX) * (height - currentHeight) / 2;
         volume += volumeIncrement;
         continue;
       }
-    
+
       const volumeIncrement = (nextX - x) * (height - nextHeight) / 2;
       volume += volumeIncrement;
     }
-    
+
     return volume;
   }
 
-  isBothVolumesExceed(volumeLeftActual, volumeRightActual, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight) {
-    return (volumeLeftActual > volumeLeftExpected + volumeLeft - this.epsilon) && (volumeRightActual > volumeRightExpected + volumeRight - this.epsilon);
+  isBothVolumesExceed(volumeLeftActual, volumeRightActual,
+    volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight) {
+    return (volumeLeftActual > volumeLeftExpected + volumeLeft - this.epsilon)
+      && (volumeRightActual > volumeRightExpected + volumeRight - this.epsilon);
   }
 
-  isLeftVolumeExceed(volumeLeftActual, volumeRightActual, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight) {
-    return volumeLeftActual > volumeLeftExpected + volumeLeft && volumeRightActual < volumeRightExpected + volumeRight;
+  isLeftVolumeExceed(volumeLeftActual, volumeRightActual,
+    volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight) {
+    return volumeLeftActual > volumeLeftExpected + volumeLeft
+      && volumeRightActual < volumeRightExpected + volumeRight;
   }
 
-  isRightVolumeExceed(volumeLeftActual, volumeRightActual, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight) {
-    return volumeLeftActual < volumeLeftExpected + volumeLeft && volumeRightActual > volumeRightExpected + volumeRight;
+  isRightVolumeExceed(volumeLeftActual, volumeRightActual,
+    volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight) {
+    return volumeLeftActual < volumeLeftExpected + volumeLeft
+      && volumeRightActual > volumeRightExpected + volumeRight;
   }
 
   calcOptWaterHeight(left, right, volume) {
@@ -146,15 +157,19 @@ class Calculator {
     return { maxY, maxIndex };
   }
 
-  calcHeightForRightVolumeExceed(left, maxIndex, right, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight, maxY, volumeLeftActual, volumeRightActual, volume) {
+  calcHeightForRightVolumeExceed(left, maxIndex, right,
+    volumeLeftExpected, volumeRightExpected, volumeLeft,
+    volumeRight, maxY, volumeLeftActual, volumeRightActual, volume) {
     if (volumeLeftActual + volumeRightActual > volumeLeftExpected + volumeRightExpected + volumeLeft + volumeRight) {
       const heightLeft = maxY - this.findMinY(left, maxIndex);
-      const heightRight = this.calcHeight(maxIndex, right, volumeRightExpected, volumeLeft + volumeLeftExpected - volumeLeftActual, volumeRight);
+      const heightRight = this.calcHeight(
+        maxIndex, right, volumeRightExpected, volumeLeft + volumeLeftExpected - volumeLeftActual, volumeRight);
 
       return Math.max(heightLeft, heightRight);
     }
 
-    return this.calcOptWaterHeight(left, right, volume + volumeRight + volumeLeft) - this.findMinY(left, right);
+    return this.calcOptWaterHeight(
+      left, right, volume + volumeRight + volumeLeft) - this.findMinY(left, right);
   }
 
   calcHeight(left, right, volume, volumeLeft, volumeRight) {
@@ -164,31 +179,42 @@ class Calculator {
       return this.calcOptWaterHeight(left, right, volume + volumeLeft + volumeRight) - this.findMinY(left, right);
     }
 
-    const { volumeLeftActual, volumeRightActual, volumeLeftExpected, volumeRightExpected } = this.calcVolumes(left, maxIndex, right, maxY, volume);
+    const { volumeLeftActual, volumeRightActual,
+      volumeLeftExpected, volumeRightExpected } = this.calcVolumes(left, maxIndex, right, maxY, volume);
 
-    if (this.isBothVolumesExceed(volumeLeftActual, volumeRightActual, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight)) {
-      return this.calcHeightForBothVolumesExceed(left, maxIndex, right, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight);
+    if (this.isBothVolumesExceed(volumeLeftActual, volumeRightActual,
+      volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight)) {
+      return this.calcHeightForBothVolumesExceed(
+        left, maxIndex, right, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight);
     }
-    if (this.isLeftVolumeExceed(volumeLeftActual, volumeRightActual, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight)) {
-      return this.calcHeightForLeftVolumeExceed(left, maxIndex, right, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight, maxY, volumeRightActual, volumeLeftActual, volume);
+    if (this.isLeftVolumeExceed(
+      volumeLeftActual, volumeRightActual, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight)) {
+      return this.calcHeightForLeftVolumeExceed(left, maxIndex, right, volumeLeftExpected,
+        volumeRightExpected, volumeLeft, volumeRight, maxY, volumeRightActual, volumeLeftActual, volume);
     }
-    if (this.isRightVolumeExceed(volumeLeftActual, volumeRightActual, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight)) {
-      return this.calcHeightForRightVolumeExceed(left, maxIndex, right, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight, maxY, volumeLeftActual, volumeRightActual, volume);
+    if (this.isRightVolumeExceed(volumeLeftActual, volumeRightActual, volumeLeftExpected,
+      volumeRightExpected, volumeLeft, volumeRight)) {
+      return this.calcHeightForRightVolumeExceed(left, maxIndex, right, volumeLeftExpected,
+        volumeRightExpected, volumeLeft, volumeRight, maxY, volumeLeftActual, volumeRightActual, volume);
     }
     return this.calcOptWaterHeight(left, right, volume + volumeRight + volumeLeft) - this.findMinY(left, right);
   }
 
-  calcHeightForBothVolumesExceed(left, maxIndex, right, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight) {
+  calcHeightForBothVolumesExceed(left, maxIndex, right, volumeLeftExpected,
+    volumeRightExpected, volumeLeft, volumeRight) {
     const heightLeft = this.calcHeight(left, maxIndex, volumeLeftExpected, volumeLeft, 0);
     const heightRight = this.calcHeight(maxIndex, right, volumeRightExpected, 0, volumeRight);
 
     return Math.max(heightLeft, heightRight);
   }
 
-  calcHeightForLeftVolumeExceed(left, maxIndex, right, volumeLeftExpected, volumeRightExpected, volumeLeft, volumeRight, maxY, volumeRightActual, volumeLeftActual, volume) {
+  calcHeightForLeftVolumeExceed(left, maxIndex, right, volumeLeftExpected,
+    volumeRightExpected, volumeLeft, volumeRight, maxY, volumeRightActual, volumeLeftActual, volume) {
     if (volumeLeftActual + volumeRightActual > volumeLeftExpected + volumeRightExpected + volumeLeft + volumeRight) {
-      const heightLeft = this.calcHeight(left, maxIndex, volumeLeftExpected, volumeLeft, volumeRight + volumeRightExpected - volumeRightActual);
+      const heightLeft = this.calcHeight(left, maxIndex, volumeLeftExpected, volumeLeft,
+        volumeRight + volumeRightExpected - volumeRightActual);
       const heightRight = maxY - this.findMinY(maxIndex, right);
+
       return Math.max(heightLeft, heightRight);
     }
 
@@ -197,7 +223,9 @@ class Calculator {
 }
 
 const fs = require('fs');
-const [[numPoints, initialHeight], ...points] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(line => line.trim().split(' ').map(Number));
+const [[numPoints, initialHeight], ...points] = fs.readFileSync('input.txt', 'utf-8').trim().split('\n').map(
+  line => line.trim().split(' ').map(Number)
+);
 const xValues = points.map(point => point[0]);
 const yValues = points.map(point => point[1]);
 const initialVolume = (xValues[numPoints] - xValues[0]) * initialHeight;

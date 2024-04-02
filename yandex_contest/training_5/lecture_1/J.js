@@ -230,7 +230,6 @@ class Document {
     this.lineHeigth = this.height;
   }
 
-
   addWord(word) {
     let wordWidth = word.length * this.charWidth;
     let wordWidthWithSpace = wordWidth + this.charWidth;
@@ -288,7 +287,6 @@ class Document {
         } else {
           break;
         }
-
       }
 
       if (this.currentX >= this.width) {

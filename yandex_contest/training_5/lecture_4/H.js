@@ -75,14 +75,21 @@ const calcReqVotes = (totalVotesArr, votesArr, reqVotesArr, N) => {
   for (let i = 1; i < N; i += 1) {
     const lB = bs(totalVotesArr, votesArr, 0, i, i);
     const remainder = (votesArr[lB] - (votesArr[i] + totalVotesArr[lB])) % (lB + 2);
-    reqVotesArr[i] = votesArr[i] + totalVotesArr[lB] + Math.floor((votesArr[lB] - (votesArr[i] + totalVotesArr[lB])) / (lB + 2)) * (lB + 1) + ((remainder < (lB + 1)) ? (remainder + 1) : (lB + 1));
+    reqVotesArr[i] = votesArr[i] + totalVotesArr[lB] + Math.floor(
+      (votesArr[lB] - (votesArr[i] + totalVotesArr[lB])) / (lB + 2)
+    ) * (lB + 1) + ((remainder < (lB + 1)) ? (remainder + 1) : (lB + 1));
   }
 };
 
 const calcCur = (votesArr, totalVotesArr, lB, resI) => {
-  const remainder = (((votesArr[lB] - (votesArr[resI] + totalVotesArr[lB])) % (lB + 2)) < lB + 1) ? (((votesArr[lB] - (votesArr[resI] + totalVotesArr[lB])) % (lB + 2)) + 1) : lB + 1;
+  const remainder = (((votesArr[lB] - (votesArr[resI] + totalVotesArr[lB])) % (lB + 2)) < lB + 1) ?
+    (((votesArr[lB] - (votesArr[resI] + totalVotesArr[lB])) % (lB + 2)) + 1) : lB + 1;
 
-  return [votesArr[resI] + totalVotesArr[lB] + Math.floor((votesArr[lB] - (votesArr[resI] + totalVotesArr[lB])) / (lB + 2)) * (lB + 1) + remainder, Math.floor((votesArr[lB] - (votesArr[resI] + totalVotesArr[lB])) / (lB + 2)), remainder];
+  return [votesArr[resI] + totalVotesArr[lB] + Math.floor(
+    (votesArr[lB] - (votesArr[resI] + totalVotesArr[lB])) / (lB + 2)
+  ) * (lB + 1) + remainder, Math.floor(
+    (votesArr[lB] - (votesArr[resI] + totalVotesArr[lB])) / (lB + 2)
+  ), remainder];
 };
 
 const calcVotesAndReqs = (votesArr, N) => {

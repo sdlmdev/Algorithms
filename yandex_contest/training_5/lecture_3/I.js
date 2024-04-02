@@ -204,11 +204,19 @@ const readData = (data) => {
         new Map().set('score', [firstTeamScore, secondTeamScore])
       );
 
-      teamsGoalsScored.get(firstTeamName) ? teamsGoalsScored.set(firstTeamName, teamsGoalsScored.get(firstTeamName) + firstTeamScore) : teamsGoalsScored.set(firstTeamName, firstTeamScore);
-      teamsGoalsScored.get(secondTeamName) ? teamsGoalsScored.set(secondTeamName, teamsGoalsScored.get(secondTeamName) + secondTeamScore) : teamsGoalsScored.set(secondTeamName, secondTeamScore);
+      teamsGoalsScored.get(firstTeamName) ? teamsGoalsScored.set(
+        firstTeamName, teamsGoalsScored.get(firstTeamName) + firstTeamScore
+        ) : teamsGoalsScored.set(firstTeamName, firstTeamScore);
+      teamsGoalsScored.get(secondTeamName) ? teamsGoalsScored.set(
+        secondTeamName, teamsGoalsScored.get(secondTeamName) + secondTeamScore
+        ) : teamsGoalsScored.set(secondTeamName, secondTeamScore);
 
-      teamsGamesPlayed.get(firstTeamName) ? teamsGamesPlayed.set(firstTeamName, teamsGamesPlayed.get(firstTeamName) + 1) : teamsGamesPlayed.set(firstTeamName, 1);
-      teamsGamesPlayed.get(secondTeamName) ? teamsGamesPlayed.set(secondTeamName, teamsGamesPlayed.get(secondTeamName) + 1) : teamsGamesPlayed.set(secondTeamName, 1);
+      teamsGamesPlayed.get(firstTeamName) ? teamsGamesPlayed.set(
+        firstTeamName, teamsGamesPlayed.get(firstTeamName) + 1
+        ) : teamsGamesPlayed.set(firstTeamName, 1);
+      teamsGamesPlayed.get(secondTeamName) ? teamsGamesPlayed.set(
+        secondTeamName, teamsGamesPlayed.get(secondTeamName) + 1
+        ) : teamsGamesPlayed.set(secondTeamName, 1);
 
       const matchDataLengthFirstTeam = firstTeamScore + i;
       const matchDataLength = firstTeamScore + secondTeamScore + i;
@@ -233,12 +241,18 @@ const readData = (data) => {
         if (cntLine === matchDataLength) {
           gamesData.get(gameId).set('openGame', openGame);
 
-          teamsOpenGameScore.get(openGame.team) ? teamsOpenGameScore.set(openGame.team, teamsOpenGameScore.get(openGame.team) + 1) : teamsOpenGameScore.set(openGame.team, 1);
+          teamsOpenGameScore.get(openGame.team) ? teamsOpenGameScore.set(
+            openGame.team, teamsOpenGameScore.get(openGame.team) + 1
+            ) : teamsOpenGameScore.set(openGame.team, 1);
         }
 
-        playersGoalsScored.get(playerId) ? playersGoalsScored.get(playerId).set('goals', playersGoalsScored.get(playerId).get('goals') + 1) : playersGoalsScored.set(playerId, new Map().set('goals', 1).set('team', team));
+        playersGoalsScored.get(playerId) ? playersGoalsScored.get(playerId).set(
+          'goals', playersGoalsScored.get(playerId).get('goals') + 1
+          ) : playersGoalsScored.set(playerId, new Map().set('goals', 1).set('team', team));
 
-        goalsHistory.get(gameId) ? goalsHistory.get(gameId).push({ 'player': playerId, 'team': team, 'minute': minute }) : goalsHistory.set(gameId, [{ 'player': playerId, 'team': team, 'minute': minute }]);
+        goalsHistory.get(gameId) ? goalsHistory.get(gameId).push(
+          { 'player': playerId, 'team': team, 'minute': minute }
+          ) : goalsHistory.set(gameId, [{ 'player': playerId, 'team': team, 'minute': minute }]);
       }
     } else if (curCommand === requests.getTotalGoalsForTeam) {
       const curTeam = lineData.slice(3).join(' ');
