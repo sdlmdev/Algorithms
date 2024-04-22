@@ -1,0 +1,366 @@
+<!-- A. Аккордеон табов
+Ограничение времени	10 секунд
+Ограничение памяти	640.0 Мб
+Ввод	input.js
+Вывод	output.png
+Необходимо создать компонент для визуализации массива данных в виде табов. Компонент должен корректно отображаться на различных разрешениях экрана, соблюдая указанные требования к дизайну и функциональности.
+
+Пример компонента
+
+Формат входных данных:
+    {
+        tabs: {
+            title: string,
+            description: string,
+            active?: boolean,
+        }[],
+        minWidth: number,
+    }
+tabs - массив объектов, каждый из которых представляет собой таб с заголовком title, описанием description и необязательным полем active, определяющим, является ли таб активным изначально.
+
+minWidth - минимальная ширина каждого таба
+
+Функциональные требования:
+
+Компонент должен корректно отображать все табы, распределяя их по рядам. Ширина экрана не должна ограничивать отображение табов - при нехватке пространства табы переносятся в новый ряд.
+В каждом ряду табы должны равномерно занять все доступное пространство.
+Таб, у которого в данных указано поле active, отображается раскрытым по умолчанию.
+В любой момент времени может быть открыт только один таб.
+Дизайн и стилизация:
+
+Все углы элементов компонента должны иметь скругление в 16px.
+Высота кнопки вместе с отступами 35px.
+Отступы внутри кнопки с иконкой, предназначенной для раскрытия таба, составляют 10px.
+Все остальные отступы (отступы от края экрана, расстояния между табами, внутренние отступы таба, расстояние между кнопкой и текстом и т.д.) составляют 20px.
+Для оформления используйте предоставленные базовые стили, шрифты и иконки.
+Для тестирования используется браузер на базе Chromium. ВАЖНО: В своих решениях не используйте новые функции появившиеся после версии Chrome 106.
+
+По ссылке можно скачать архив с шаблоном и примерами на разных разрешениях экрана. В качестве решения ожидается html файл шаблона с вашим кодом и разметкой. -->
+
+<!-- <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+    <style>
+        :root {
+            --white: #fff;
+            --gray: #a9a9a9;
+            --primary-color: #fdcd5c;
+            --base-background: #dee;
+
+            --base-font-size: 16px;
+            --title-font-size: 18px;
+        }
+        * {
+            box-sizing: border-box;
+            font-family:  Verdana, Geneva, Tahoma, sans-serif;
+        }
+        body {
+            background-color: var(gray);
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        h3 {
+          font-size: 18px;
+          line-height: 21px;
+          margin: 0;
+        }
+        span {
+          font-size: 16px;
+          line-height: 18px;
+        }
+        /* SOLUTION */
+    </style>
+</head>
+<body>
+    <template>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none">
+            <path d="M1 1.5L7 7.5L13 1.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </template>
+    <div class="root"> -->
+        <!-- SOLUTION -->
+    <!-- </div>
+
+    <script>
+        const example = window.taskData || {
+          tabs: [{
+            title: 'Title 1',
+            description: 'Article 1',
+            },{
+                title: 'Title 2',
+                description: 'Article 2',
+            },{
+                title: 'Title 3',
+                description: 'Article 3',
+                active: true,
+            },{
+                title: 'Title 4',
+                description: 'Article 4',
+            },],
+            minWidth: 200,
+        }
+
+        function solution(tabs, minWidth) {
+            //SOLUTION
+        }
+
+        solution(example.tabs, example.minWidth);
+        window.onSolutionReady && window.onSolutionReady();
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+    <style>
+      :root {
+        --white: #fff;
+        --gray: #a9a9a9;
+        --primary-color: #fdcd5c;
+        --base-background: #dee;
+        --base-font-size: 16px;
+        --title-font-size: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        padding: 0;
+        margin: 0;
+        border-radius: 16px;
+      }
+
+      body {
+        background-color: var(--gray);
+        width: 100%;
+      }
+
+      h3 {
+        font-size: 18px;
+        line-height: 21px;
+        min-height: 21px;
+      }
+
+      span {
+        font-size: 16px;
+        line-height: 18px;
+      }
+
+      button {
+        all: unset;
+        display: flex;
+        justify-content: center;
+        background-color: var(--primary-color);
+        padding: 10px;
+        border-radius: 16px;
+      }
+
+      .root {
+        border: 20px solid var(--gray);
+        background-color: var(--gray);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .root__tab {
+        background-color: var(--white);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-basis: 0;
+        align-self: flex-start;
+        transition: all 0.4s ease-in-out;
+        gap: 20px;
+      }
+
+      .root__article {
+        background-color: var(--white);
+        padding: 20px;
+        display: none;
+        position: relative;
+        top: 20px;
+        left: -20px;
+      }
+
+      .root__article_active {
+        display: flex;
+      }
+
+      .btn-icon_rotated {
+        transform: rotate(180deg);
+      }
+
+      .btn-icon {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        max-height: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <template>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="9"
+        viewBox="0 0 14 9"
+        fill="none"
+      >
+        <path
+          d="M1 1.5L7 7.5L13 1.5"
+          stroke="#fff"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </template>
+    <div class="root"></div>
+    <script>
+      const example = window.taskData || {
+        tabs: [
+          {
+            title: "Title 1",
+            description: "Article 1",
+          },
+          {
+            title: "Title 2",
+            description: "Article 2",
+          },
+          {
+            title: "Title 3",
+            description: "Article 3",
+            active: true,
+          },
+          {
+            title: "Title 4",
+            description: "Article 4",
+          },
+        ],
+        minWidth: 200,
+      };
+
+      const createTabElement = (tab, minWidth, isActiveTab) => {
+        const tabElement = document.createElement("div");
+        const titleElement = document.createElement("h3");
+        const buttonElement = document.createElement("button");
+        const spanElement = document.createElement("span");
+        const btnIcon = document.querySelector("template");
+        const btnIconNode = btnIcon.content.cloneNode(true);
+
+        spanElement.appendChild(btnIconNode);
+
+        tabElement.style.minWidth = `${minWidth}px`;
+        tabElement.classList.add("root__tab");
+        spanElement.classList.add("btn-icon");
+
+        if (!isActiveTab && tab.active) {
+          tabElement.classList.add("root__tab_active");
+          spanElement.classList.add("btn-icon_rotated");
+        }
+
+        titleElement.textContent = tab.title;
+
+        buttonElement.appendChild(spanElement);
+        tabElement.appendChild(titleElement);
+        tabElement.appendChild(buttonElement);
+
+        return { tabElement, spanElement };
+      };
+
+      const createArticleBlock = (tab, isActiveTab) => {
+        const articleBlock = document.createElement("div");
+        const text = document.createElement("span");
+
+        articleBlock.classList.add("root__article");
+        text.classList.add("text");
+        text.textContent = tab.description;
+        articleBlock.appendChild(text);
+
+        if (tab.active && !isActiveTab) {
+          articleBlock.classList.add("root__article_active");
+        }
+
+        return articleBlock;
+      };
+
+      const adjustArticleDimensions = () => {
+        const pageWidth = window.innerWidth;
+        const tabEl = document.querySelector(".root__tab_active");
+        const leftPos = tabEl.getBoundingClientRect().left;
+        const scrollbarWidth =
+          window.innerWidth - document.documentElement.clientWidth;
+        const articles = document.querySelectorAll(".root__article");
+
+        for (let i = 0; i < articles.length; i += 1) {
+          articles[i].style.marginLeft = 20 - leftPos + "px";
+          articles[i].style.width = pageWidth - scrollbarWidth - 40 + "px";
+        }
+      };
+
+      const solution = (tabs, minWidth) => {
+        const root = document.querySelector(".root");
+        let isActiveTab = false;
+
+        for (let i = 0; i < tabs.length; i += 1) {
+          const { tabElement, spanElement } = createTabElement(tabs[i], minWidth, isActiveTab);
+          const articleBlock = createArticleBlock(tabs[i], isActiveTab);
+
+          if (tabs[i].active && !isActiveTab) {
+            isActiveTab = true;
+          }
+
+          tabElement.querySelector("button").addEventListener("click", () => {
+            const rootTabs = document.querySelectorAll(".root__tab");
+            const spans = document.querySelectorAll("span");
+            const articles = document.querySelectorAll(".root__article");
+
+            for (let j = 0; j < rootTabs.length; j += 1) {
+              rootTabs[j].classList.remove("root__tab_active");
+            }
+
+            
+            for (let j = 0; j < spans.length; j += 1) {
+              spans[j].classList.remove("btn-icon_rotated");
+            }
+
+            
+            for (let j = 0; j < articles.length; j += 1) {
+              articles[j].classList.remove("root__article_active");
+            }
+
+            tabElement.classList.add("root__tab_active");
+            spanElement.classList.add("btn-icon_rotated");
+            articleBlock.classList.add("root__article_active");
+
+            adjustArticleDimensions();
+          });
+
+          tabElement.appendChild(articleBlock);
+          root.appendChild(tabElement);
+        }
+
+        document.addEventListener("DOMContentLoaded", adjustArticleDimensions);
+        window.addEventListener("resize", adjustArticleDimensions);
+      };
+
+      solution(example.tabs, example.minWidth);
+      window.onSolutionReady && window.onSolutionReady();
+    </script>
+  </body>
+</html>
