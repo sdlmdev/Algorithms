@@ -40,7 +40,7 @@
  * }
  */
 
-function hasCycle(head: ListNode | null): boolean {
+function hasCycle(head) {
   while (head) {
     if (head?.visited) return true;
     head.visited = true;
