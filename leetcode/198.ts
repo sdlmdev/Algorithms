@@ -22,15 +22,15 @@
 
 function rob(nums: number[]): number {
   let rob = 0;
-  let norob = 0;
+  let noRob = 0;
 
   for (let i = 0; i < nums.length; i += 1) {
-    const curRob = norob + nums[i];
-    const curNoRob = Math.max(rob, norob);
+    const curRob = noRob + nums[i];
+    const curNoRob = Math.max(rob, noRob);
 
     rob = curRob;
-    norob = curNoRob;
+    noRob = curNoRob;
   }
 
-  return Math.max(rob, norob);
+  return Math.max(rob, noRob);
 }
