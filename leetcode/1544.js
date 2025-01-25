@@ -32,6 +32,7 @@
  * @param {string} s
  * @return {string}
  */
+
 var makeGood = function(s) {
     const stack = [s[0]];
 
