@@ -4,7 +4,7 @@
 // Ограничение памяти	64Mb
 // Ввод	стандартный ввод или input.txt
 // Вывод стандартный вывод или output.txt
- 
+
 // По данному числу N определите количество последовательностей из нулей и единиц длины N,
 // в которых никакие три единицы не стоят рядом.
 
@@ -20,7 +20,7 @@
 
 const readline = require('readline').createInterface({
   input: process.stdin,
-  output: process.srdout,
+  output: process.stdout,
 }).on('line', line => {
   const dp = [2, 4, 7];
 
